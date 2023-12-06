@@ -1,14 +1,11 @@
-import AuthProvider from '@/providers/AuthProvider'
-import QueryProvider from '@/providers/QueryProvider'
+import Sidebar from '@/components/Sidebar/Sidebar'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
-import { Toaster } from 'react-hot-toast'
-import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'Task manager',
+	title: 'All Tasks',
 	description: 'The best task manager!',
 	icons: '/taskade-icon.svg',
 }
@@ -26,12 +23,15 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<AuthProvider>
-					<QueryProvider>
-						<Toaster />
+				<main className='p-10 h-full w-full gap-6 flex'>
+					<Sidebar />
+					<div
+						className='w-full h-full bg-neutral-800 rounded-2xl border border-neutral-500
+						p-8'
+					>
 						{children}
-					</QueryProvider>
-				</AuthProvider>
+					</div>
+				</main>
 			</body>
 		</html>
 	)

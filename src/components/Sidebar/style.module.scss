@@ -1,0 +1,85 @@
+.profile {
+	// @apply 'p-[1rem 0.8rem] m-6 relative rounded-2xl cursor-pointer flex tems-center text-gray-300 font-medium justify-center gap-x-4 p-4';
+	margin: 1.5rem;
+	padding: 1rem 0.8rem;
+	position: relative;
+	border-radius: 1rem;
+	cursor: pointer;
+	font-weight: 500;
+	color: rgb(209, 213, 219);
+	display: flex;
+	align-items: center;
+	.profile-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		backdrop-filter: blur(10px);
+		z-index: 0;
+		background-color: rgb(24, 23, 23);
+		transition: all 0.55s linear;
+		border-radius: 1rem;
+		border: 1px solid rgb(87, 87, 87);
+		opacity: 0.2;
+	}
+
+	.image,
+	h1 {
+		position: relative;
+		z-index: 1;
+	}
+
+	.image {
+		flex-shrink: 0;
+		display: inline-block;
+		overflow: hidden;
+		transition: all 0.5s ease;
+		border-radius: 100%;
+
+		width: 70px;
+		height: 70px;
+
+		img {
+			transition: all 0.5s ease;
+			border-radius: 100%;
+		}
+	}
+
+	> h1 {
+		margin-left: 30px;
+		font-size: 20px;
+	}
+
+	.nav-item {
+		// @apply relative p-20 flex flex-col gap-y-8 cursor-pointer;
+		position: relative;
+		padding: 0.6rem 1rem 1rem 2.1rem;
+		margin: 0.3rem 0;
+		display: grid;
+		grid-template-columns: 40px 1fr;
+		cursor: pointer;
+
+		&::after {
+			position: absolute;
+			content: '';
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 100%;
+			z-index: 10px;
+			background-color: green;
+		}
+	}
+
+	&:hover {
+		.profile-overlay {
+			opacity: 1;
+			border: 2px solid green;
+		}
+	}
+}
+
+.active {
+	@apply hover:bg-gray-200 focus:text-white;
+}
