@@ -18,7 +18,7 @@ const page = () => {
 		},
 	})
 
-	const filter = tasks.data?.filter(item => item.completed === true)
+	const filter = tasks?.data?.filter(item => item.important === true)
 
 	console.log(filter)
 
@@ -52,7 +52,13 @@ const page = () => {
 				Important tasks!
 			</h1>
 			{filter?.map(item => (
-				<TaskItem data={item} />
+				<div
+					key={item.id}
+					className='flex justify-start items-center w-[300px] h-[200px] border border-green-500
+					mt-10 rounded-xl bg-neutral-600'
+				>
+					<TaskItem data={item} />
+				</div>
 			))}
 		</div>
 	)

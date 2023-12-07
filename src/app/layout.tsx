@@ -1,3 +1,4 @@
+import MyGlobalContext from '@/context/MyGlobalContext'
 import AuthProvider from '@/providers/AuthProvider'
 import QueryProvider from '@/providers/QueryProvider'
 import type { Metadata, Viewport } from 'next'
@@ -28,8 +29,10 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<AuthProvider>
 					<QueryProvider>
-						<Toaster />
-						{children}
+						<MyGlobalContext>
+							<Toaster />
+							{children}
+						</MyGlobalContext>
 					</QueryProvider>
 				</AuthProvider>
 			</body>

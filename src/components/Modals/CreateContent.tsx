@@ -6,6 +6,19 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 const CreateContent = () => {
+	// const {
+	// 	setCompleted,
+	// 	setDate,
+	// 	setDescription,
+	// 	setImportant,
+	// 	setTitle,
+	// 	title,
+	// 	description,
+	// 	important,
+	// 	completed,
+	// 	date,
+	// } = useContext(globalContext)
+
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [date, setDate] = useState('')
@@ -52,9 +65,9 @@ const CreateContent = () => {
 			if (res.data.error) {
 				toast.error(res.data.error)
 			}
-			toast.success('Task created successfully.')
-			console.log('Task created: ', res.data)
 			client.invalidateQueries({ queryKey: ['get allTasks'] })
+			console.log('Task created: ', res.data)
+			toast.success('Task created successfully.')
 		} catch (error) {
 			toast.error('Something went wrong!')
 			console.log(error)
@@ -76,7 +89,7 @@ const CreateContent = () => {
 					className='focus:outline-none'
 				/>
 			</div>
-			<div>
+			<div className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='description'>Description</label>
 				<textarea
 					value={description}
@@ -88,7 +101,7 @@ const CreateContent = () => {
 					className='focus:outline-none'
 				/>
 			</div>
-			<div>
+			<div className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='date'>Date</label>
 				<input
 					value={date}
@@ -96,10 +109,10 @@ const CreateContent = () => {
 					id='date'
 					name='date'
 					onChange={handleChange('date')}
-					className='focus:outline-none'
+					className='focus:outline-none focus:select-none'
 				/>
 			</div>
-			<div>
+			<div className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='completed'>Toggle completed</label>
 				<input
 					value={completed.toString()}
@@ -109,7 +122,7 @@ const CreateContent = () => {
 					onChange={handleChange('completed')}
 				/>
 			</div>
-			<div>
+			<div className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='important'>Toggle important</label>
 				<input
 					value={important.toString()}
@@ -119,7 +132,7 @@ const CreateContent = () => {
 					onChange={handleChange('important')}
 				/>
 			</div>
-			<div>
+			<div className='p-4 bg-green-500 rounded-xl flex justify-center items-center cursor-pointer'>
 				<button type='submit'>Submit</button>
 			</div>
 		</form>

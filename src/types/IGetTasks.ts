@@ -3,8 +3,8 @@ export interface IGetTasks {
 	title: string
 	description: string
 	date: string
-	completed?: boolean
-	important?: boolean
+	isCompleted: boolean
+	isImportant?: boolean
 }
 
 export interface ICerateTask extends Omit<IGetTasks, 'id'> {}

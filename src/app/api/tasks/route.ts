@@ -1,4 +1,5 @@
 import { prisma } from '@/libs/prismadb'
+import { ICerateTask } from '@/types/IGetTasks'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 
@@ -9,7 +10,7 @@ export async function POST(req: Request) {
 			return NextResponse.json({ error: 'Unauthorized', status: 500 })
 		}
 
-		const { title, date, description, isImportant, isCompleted } =
+		const { title, date, description, important, completed }: ICerateTask =
 			await req.json()
 
 		if (!title || !date || !description) {
@@ -26,20 +27,19 @@ export async function POST(req: Request) {
 			})
 		}
 
-		const task = await prisma?.task?.create({
+		const createTask = await prisma?.task?.create({
 			data: {
 				title,
 				description,
 				date,
-				isImportant: isImportant,
-				isCompleted: isCompleted,
+				isImportant: important || undefined,
+				isCompleted: completed || undefined,
 				userId: session?.user?.email,
 			},
 		})
 
-		console.log('Task created: ', task)
-
-		return NextResponse.json(task)
+		console.log('Task created: ', createTask)
+		return NextResponse.json(createTask)
 	} catch (error) {
 		console.log('ERROR CREATING TASK: ', error)
 		return NextResponse.json({ error: 'Error creating task', status: 500 })

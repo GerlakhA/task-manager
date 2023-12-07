@@ -11,7 +11,7 @@ export default function Home() {
 					sequence={[
 						'Welcome',
 						1000,
-						'Welcome to in my',
+						'Welcome for',
 						1000,
 						'Welcome for my Task Manager',
 						1000,
