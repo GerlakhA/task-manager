@@ -2,22 +2,11 @@
 
 import AddTasks from '@/components/AddTasks/AddTasks'
 import TaskItem from '@/components/Tasks/TaskItem'
-import { IGetTasks } from '@/types/IGetTasks'
-import { useQuery } from '@tanstack/react-query'
+import { useAllTasks } from '@/hooks/useAllTasks'
 import { BeatLoader } from 'react-spinners'
 
 const page = () => {
-	const tasks = useQuery<IGetTasks[]>({
-		queryKey: ['get allTasks'],
-		queryFn: async () => {
-			const res = await fetch('/api/tasks')
-			return res.json()
-		},
-	})
-
-	// const filter = tasks.data?.filter(item => item.completed === true)
-
-	// console.log(filter)
+	const tasks = useAllTasks()
 
 	if (tasks.isLoading) return <BeatLoader color='#36d7b7' />
 

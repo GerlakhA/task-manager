@@ -1,9 +1,9 @@
 'use client'
 
 import { globalContext } from '@/context/MyGlobalContext'
+import { useDeleteTask } from '@/hooks/useDeleteTask'
 import { IGetTasks } from '@/types/IGetTasks'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import axios from 'axios'
+import { useQueryClient } from '@tanstack/react-query'
 import { FC, useContext } from 'react'
 import toast from 'react-hot-toast'
 import { FaTrash } from 'react-icons/fa6'
@@ -17,13 +17,7 @@ const TaskItem: FC<ITaskItem> = ({ data }) => {
 	const { completed } = useContext(globalContext)
 
 	const client = useQueryClient()
-	const deleteTasks = useMutation({
-		mutationKey: ['delete item'],
-		mutationFn: async (id: string) => {
-			const res = await axios.delete(`/api/tasks/${id}`)
-			return res.data
-		},
-	})
+	const deleteTasks = useDeleteTask()
 	client.invalidateQueries({ queryKey: ['get allTasks'] })
 
 	const deleteTaskById = (id: string) => {
