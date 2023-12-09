@@ -5,7 +5,7 @@ import { useAllTasks } from '@/hooks/useAllTasks'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-const page = () => {
+const CompletedTasks = () => {
 	const tasks = useAllTasks()
 
 	const filter = tasks?.data?.filter(item => item.isCompleted === true)
@@ -37,4 +37,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default CompletedTasks

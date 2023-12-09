@@ -4,7 +4,7 @@ import TaskItem from '@/components/Tasks/TaskItem'
 import { useAllTasks } from '@/hooks/useAllTasks'
 import { BeatLoader } from 'react-spinners'
 
-const page = () => {
+const InCompletedTasks = () => {
 	const tasks = useAllTasks()
 
 	const filter = tasks?.data?.filter(item => item.isCompleted === false)
@@ -31,4 +31,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default InCompletedTasks

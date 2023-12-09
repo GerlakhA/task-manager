@@ -5,7 +5,7 @@ import TaskItem from '@/components/Tasks/TaskItem'
 import { useAllTasks } from '@/hooks/useAllTasks'
 import { BeatLoader } from 'react-spinners'
 
-const page = () => {
+const AllTasks = () => {
 	const tasks = useAllTasks()
 
 	if (tasks.isLoading) return <BeatLoader color='#36d7b7' />
@@ -32,4 +32,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default AllTasks
