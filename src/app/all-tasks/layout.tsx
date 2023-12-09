@@ -23,7 +23,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<main className='p-10 h-full w-full gap-6 flex'>
+				<main className='p-10 h-full w-full gap-10 flex'>
 					<Sidebar />
 					<div
 						className='w-full h-full bg-neutral-800 rounded-2xl border border-neutral-500

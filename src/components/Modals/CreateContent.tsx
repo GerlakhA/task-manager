@@ -1,24 +1,13 @@
 'use client'
 
+import * as Dialog from '@radix-ui/react-dialog'
 import { useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import Button from '../Button/Button'
 
 const CreateContent = () => {
-	// const {
-	// 	setCompleted,
-	// 	setDate,
-	// 	setDescription,
-	// 	setImportant,
-	// 	setTitle,
-	// 	title,
-	// 	description,
-	// 	important,
-	// 	completed,
-	// 	date,
-	// } = useContext(globalContext)
-
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [date, setDate] = useState('')
@@ -77,7 +66,7 @@ const CreateContent = () => {
 	return (
 		<form onSubmit={handleSubmit} className='flex flex-col gap-2'>
 			<h1>Create tasks</h1>
-			<div className='flex justify-start items-center gap-x-4'>
+			<Dialog.Title className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='title'>Title: </label>
 				<input
 					value={title}
@@ -88,8 +77,8 @@ const CreateContent = () => {
 					placeholder='Create task'
 					className='focus:outline-none'
 				/>
-			</div>
-			<div className='flex justify-start items-center gap-x-4'>
+			</Dialog.Title>
+			<Dialog.Description className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='description'>Description</label>
 				<textarea
 					value={description}
@@ -100,8 +89,8 @@ const CreateContent = () => {
 					placeholder='Create task'
 					className='focus:outline-none'
 				/>
-			</div>
-			<div className='flex justify-start items-center gap-x-4'>
+			</Dialog.Description>
+			<Dialog.Title className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='date'>Date</label>
 				<input
 					value={date}
@@ -111,8 +100,8 @@ const CreateContent = () => {
 					onChange={handleChange('date')}
 					className='focus:outline-none focus:select-none'
 				/>
-			</div>
-			<div className='flex justify-start items-center gap-x-4'>
+			</Dialog.Title>
+			<Dialog.Title className='flex justify-start items-center gap-x-4'>
 				<label htmlFor='completed'>Toggle completed</label>
 				<input
 					value={completed.toString()}
@@ -121,8 +110,8 @@ const CreateContent = () => {
 					name='completed'
 					onChange={handleChange('completed')}
 				/>
-			</div>
-			<div className='flex justify-start items-center gap-x-4'>
+			</Dialog.Title>
+			<Dialog.Title className='flex justify-start items-center gap-x-4 mb-10'>
 				<label htmlFor='important'>Toggle important</label>
 				<input
 					value={important.toString()}
@@ -131,10 +120,12 @@ const CreateContent = () => {
 					name='important'
 					onChange={handleChange('important')}
 				/>
-			</div>
-			<div className='p-4 bg-green-500 rounded-xl flex justify-center items-center cursor-pointer'>
-				<button type='submit'>Submit</button>
-			</div>
+			</Dialog.Title>
+			<Dialog.Close asChild>
+				<Button type='submit' fullWidth aria-label='Close'>
+					Submit
+				</Button>
+			</Dialog.Close>
 		</form>
 	)
 }

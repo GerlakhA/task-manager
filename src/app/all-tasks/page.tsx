@@ -23,10 +23,7 @@ const page = () => {
 							className='flex justify-start items-center w-[300px] h-[200px] border border-green-500
 								mt-10 rounded-xl bg-neutral-600'
 						>
-							{/* {toast(`${item.isCompleted}`)} */}
 							<TaskItem key={item.id} data={item} />
-							{/* <Tasks /> */}
-							{/* <CreateContent /> */}
 						</div>
 					))}
 				<AddTasks />

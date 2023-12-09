@@ -3,6 +3,13 @@ import { BiLoader } from 'react-icons/bi'
 import { BsFillClipboard2CheckFill } from 'react-icons/bs'
 import { PiSealWarningBold } from 'react-icons/pi'
 
+export interface IMenuList {
+	id: number
+	title: string
+	icon: JSX.Element
+	link: string
+}
+
 export const menuList = [
 	{
 		id: 1,

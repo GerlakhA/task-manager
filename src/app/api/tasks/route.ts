@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 			return NextResponse.json({ error: 'Unauthorized', status: 500 })
 		}
 
-		const { title, date, description, important, completed }: ICerateTask =
+		const { title, date, description, isImportant, isCompleted }: ICerateTask =
 			await req.json()
 
 		if (!title || !date || !description) {
@@ -32,13 +32,13 @@ export async function POST(req: Request) {
 				title,
 				description,
 				date,
-				isImportant: important || undefined,
-				isCompleted: completed || undefined,
+				isImportant: isImportant,
+				isCompleted: isCompleted,
 				userId: session?.user?.email,
 			},
 		})
 
-		console.log('Task created: ', createTask)
+		// console.log('Task created: ', createTask)
 		return NextResponse.json(createTask)
 	} catch (error) {
 		console.log('ERROR CREATING TASK: ', error)
@@ -58,7 +58,7 @@ export async function GET(req: Request) {
 			},
 		})
 
-		console.log('GET TASKS: ', task)
+		// console.log('GET TASKS: ', task)
 
 		return NextResponse.json(task)
 	} catch (error) {
@@ -68,7 +68,26 @@ export async function GET(req: Request) {
 }
 
 export async function PUT(req: Request) {
+	const session = await getServerSession()
+
 	try {
+		if (!session?.user?.email) {
+			return NextResponse.json({ error: 'Unauthorized', status: 500 })
+		}
+		const { id, isCompleted } = await req.json()
+
+		const updateTask = await prisma.task.update({
+			where: {
+				id,
+			},
+			data: {
+				isCompleted,
+			},
+		})
+
+		console.log('UPDATE TASKS: ', updateTask)
+
+		return NextResponse.json(updateTask)
 	} catch (error) {
 		console.log('ERROR UPDATING TASK: ', error)
 		return NextResponse.json({ error: 'Error updat ing task', status: 500 })
