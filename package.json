@@ -4,9 +4,10 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "npx prisma generate && next build",
+		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"posinstall": "prisma generate"
 	},
 	"dependencies": {
 		"@next-auth/prisma-adapter": "^0.4.4-canary.81",

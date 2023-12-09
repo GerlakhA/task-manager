@@ -4,7 +4,7 @@ export interface IGetTasks {
 	description: string
 	date: string
 	isCompleted: boolean
-	isImportant?: boolean
+	isImportant: boolean
 }
 
 export interface ICerateTask extends Omit<IGetTasks, 'id'> {}

@@ -2,20 +2,11 @@
 
 import TaskItem from '@/components/Tasks/TaskItem'
 import { useAllTasks } from '@/hooks/useAllTasks'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 
 const CompletedTasks = () => {
 	const tasks = useAllTasks()
 
 	const filter = tasks?.data?.filter(item => item.isCompleted === true)
-
-	const deleteTasks = useMutation({
-		mutationKey: ['delete item'],
-		mutationFn: async (id: string) => {
-			await axios.delete(`/api/tasks/${id}`)
-		},
-	})
 
 	return (
 		<div className='w-full h-full overflow-y-auto'>

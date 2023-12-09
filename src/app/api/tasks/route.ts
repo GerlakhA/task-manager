@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 			},
 		})
 
-		// console.log('Task created: ', createTask)
+		console.log('Task created: ', createTask)
 		return NextResponse.json(createTask)
 	} catch (error) {
 		console.log('ERROR CREATING TASK: ', error)
@@ -93,23 +93,3 @@ export async function PUT(req: Request) {
 		return NextResponse.json({ error: 'Error updat ing task', status: 500 })
 	}
 }
-
-// export async function DELETE(req: Request) {
-// 	const session = await getServerSession()
-// 	try {
-// 		if (!session?.user?.email) {
-// 			return NextResponse.json({ error: 'Unauthorized', status: 500 })
-// 		}
-
-// 		const deleteTaks = await prisma.task.delete({
-// 			where: {
-// 				id: 'clpqsq7m40001redj384gj2x3',
-// 			},
-// 		})
-
-// 		console.log('DELETE TASKS: ', deleteTaks)
-// 	} catch (error) {
-// 		console.log('ERROR DELETING TASK: ', error)
-// 		return NextResponse.json({ error: 'Error deleting task', status: 500 })
-// 	}
-// }

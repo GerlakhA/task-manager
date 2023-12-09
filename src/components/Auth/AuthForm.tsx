@@ -74,20 +74,20 @@ const AuthForm = () => {
 		}
 	}
 
-	const socialAction = (action: string) => {
-		setIsLoading(true)
-		signIn(action, { redirect: false })
-			.then(callback => {
-				if (callback?.error) {
-					toast.error('User does not exist!')
-				}
+	// const socialAction = (action: string) => {
+	// 	setIsLoading(true)
+	// 	signIn(action, { redirect: false })
+	// 		.then(callback => {
+	// 			if (callback?.error) {
+	// 				toast.error('User does not exist!')
+	// 			}
 
-				if (callback?.ok && !callback.error) {
-					toast.success('Logged In!')
-				}
-			})
-			.finally(() => setIsLoading(false))
-	}
+	// 			if (callback?.ok && !callback.error) {
+	// 				toast.success('Logged In!')
+	// 			}
+	// 		})
+	// 		.finally(() => setIsLoading(false))
+	// }
 
 	return (
 		<div

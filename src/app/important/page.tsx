@@ -8,6 +8,7 @@ const ImportantTasks = () => {
 	const tasks = useAllTasks()
 
 	const filter = tasks?.data?.filter(item => item.isImportant === true)
+	// console.log(filter)
 
 	if (tasks.isLoading) return <BeatLoader color='#36d7b7' />
 
@@ -21,7 +22,7 @@ const ImportantTasks = () => {
 					<div
 						key={item.id}
 						className='flex justify-start items-center w-[300px] h-[200px] border border-green-500
-					mt-10 rounded-xl bg-neutral-600'
+						mt-10 rounded-xl bg-neutral-600'
 					>
 						<TaskItem data={item} />
 					</div>
